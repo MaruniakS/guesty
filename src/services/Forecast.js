@@ -4,6 +4,7 @@ import { filter } from 'lodash';
 import { fetchUrl } from "../constants/API";
 import { errorHandler } from "./Helpers";
 import {SKY_STATE_ICONS, SKY_STATES} from "../constants/Forecast";
+import { CITY_INFO } from "../constants/Cities";
 
 class Forecast {
   // get only results for 12:00 each day
@@ -23,7 +24,7 @@ class Forecast {
   };
 
   fetch = (city) => {
-    return axios.get(fetchUrl(city.name, city.countryCode))
+    return axios.get(fetchUrl(city, CITY_INFO[city].countryCode))
         .then(res => this.getMiddayForecast(res.data))
         .catch(errorHandler)
   }

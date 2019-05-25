@@ -75,8 +75,6 @@ class Forecast extends Component {
   render () {
     const { classes } = this.props;
     const { selectedCity, days, sortType } = this.props;
-    const cityName = selectedCity && selectedCity.name;
-    // const cityName = selectedCity && selectedCity.name;
     return <div className="forecast">
       <Container maxWidth="lg">
         <Grid container className={classes.root} spacing={2}>
@@ -84,7 +82,7 @@ class Forecast extends Component {
             <FormControl className="custom-form-control">
               <InputLabel htmlFor="city">Choose city</InputLabel>
               <Select
-                  value={cityName}
+                  value={selectedCity}
                   onChange={this._onCityChange}
                   inputProps={{
                     name: 'name',

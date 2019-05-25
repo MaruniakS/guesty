@@ -27,7 +27,7 @@ class ForecastContainer extends Component {
     const selectedCity = JSON.parse(localStorage.getItem(STORAGE_CONSTANTS.CITY));
     const sortType = JSON.parse(localStorage.getItem(STORAGE_CONSTANTS.SORT_TYPE));
 
-    selectedCity && selectCity(selectedCity.name);
+    selectedCity && selectCity(selectedCity);
     sortType && changeSortType(sortType);
   }
 }

@@ -1,6 +1,5 @@
 import ForecastService from "../services/Forecast";
 import {STORAGE_CONSTANTS} from "../constants/Forecast";
-import {CITY_INFO} from "../constants/Cities";
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 export const SELECT_CITY = 'SELECT_CITY';
@@ -19,18 +18,14 @@ const fetchForecast = city => dispatch => {
 export const selectCity = city => (dispatch, getState) => {
     if (!city) return;
     const { selectedCity } = getState().forecast;
-    const cityData = {
-      name: city,
-      ...CITY_INFO[city]
-    };
-    localStorage.setItem(STORAGE_CONSTANTS.CITY, JSON.stringify(cityData));
+    localStorage.setItem(STORAGE_CONSTANTS.CITY, JSON.stringify(city));
     dispatch({
       type: SELECT_CITY,
-      city: cityData
+      city
     });
 
-    if (cityData.name !== (selectedCity && selectedCity.name)) {
-      dispatch(fetchForecast(cityData))
+    if (city !== selectedCity) {
+      dispatch(fetchForecast(city))
     }
 };
 
